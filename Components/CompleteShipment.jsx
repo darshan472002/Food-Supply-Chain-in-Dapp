@@ -3,7 +3,7 @@ import { Str1 } from "@/Components/index";
 
 export default ({ completeModal, setCompleteModal, completeShipment }) => {
   const [completeShip, setCompleteShip] = useState({
-    recevier: "",
+    receiver: "",
     index: "",
   });
 
@@ -32,12 +32,12 @@ export default ({ completeModal, setCompleteModal, completeShipment }) => {
               <div className="relative mt-3">
                 <input
                   type="text"
-                  placeholder="recevier"
+                  placeholder="receiver"
                   className="w-full pl-5 pr-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                   onChange={(e) =>
                     setCompleteShip({
                       ...completeShip,
-                      recevier: e.target.value,
+                      receiver: e.target.value,
                     })
                   }
                 />

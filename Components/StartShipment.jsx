@@ -3,12 +3,13 @@ import { Str1 } from "@/Components/index";
 
 export default ({ startModal, setStartModal, startShipment }) => {
     const [getProduct, setGetProduct] = useState({
-        reveiver: "",
+        receiver: "",
         index: "",
     });
 
     const startShipping = () => {
-        startShipment (getProduct);
+        console.log(getProduct);
+        startShipment(getProduct);
     };
     return startModal ? (
         <div className="fixed inset-0 z-10 overflow-y-auto">
@@ -40,7 +41,7 @@ export default ({ startModal, setStartModal, startShipment }) => {
                                     onChange={(e) =>
                                         setGetProduct({
                                             ...getProduct,
-                                            reveiver: e.target.value,
+                                            receiver: e.target.value,
                                         })
                                     }
                                 />

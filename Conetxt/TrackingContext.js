@@ -38,7 +38,7 @@ export const TrackingProvider = ({ children }) => {
                 }
             );
             await createItem.wait();
-            console.log(createItem);
+            window.location.reload();
         } catch (error) {
             console.log("Some want wrong", error);
         }
@@ -46,8 +46,11 @@ export const TrackingProvider = ({ children }) => {
 
     const getAllShipment = async () => {
         try {
-            const provider = new ethers.providers.JsonRpcProvider();
-            const contract = fetchContract(provider);
+            const web3Modal = new Web3Modal();
+            const connection = await web3Modal.connect();
+            const provider = new ethers.providers.Web3Provider(connection);
+            const signer = provider.getSigner();
+            const contract = fetchContract(signer);
 
             const shipments = await contract.getAllTransactions();
             const allShipments = shipments.map((shipment) => ({
@@ -74,8 +77,11 @@ export const TrackingProvider = ({ children }) => {
             const accounts = await window.ethereum.request({
                 method: "eth_accounts",
             });
-            const provider = new ethers.providers.JsonRpcProvider();
-            const contract = fetchContract(provider);
+            const web3Modal = new Web3Modal();
+            const connection = await web3Modal.connect();
+            const provider = new ethers.providers.Web3Provider(connection);
+            const signer = provider.getSigner();
+            const contract = fetchContract(signer);
             const shipmentsCount = await contract.getShipmentsCount(accounts[0]);
             return shipmentsCount.toNumber();
         } catch (error) {
@@ -109,7 +115,7 @@ export const TrackingProvider = ({ children }) => {
             );
 
             transaction.wait();
-            console.log(transaction);
+            window.location.reload();
         } catch (error) {
             console.log("wrong completeShipment", error);
         }
@@ -124,9 +130,12 @@ export const TrackingProvider = ({ children }) => {
                 method: "eth_accounts",
             });
 
-            const provider = new ethers.providers.JsonRpcProvider();
-            const contract = fetchContract(provider);
-            const shipment = await contract.getShipment(accounts[0], index * 1);
+            const web3Modal = new Web3Modal();
+            const connection = await web3Modal.connect();
+            const provider = new ethers.providers.Web3Provider(connection);
+            const signer = provider.getSigner();
+            const contract = fetchContract(signer);
+            const shipment = await contract.getShipment(accounts[0], index);
 
             const SingleShiplent = {
                 sender: shipment[0],
@@ -160,13 +169,15 @@ export const TrackingProvider = ({ children }) => {
             const provider = new ethers.providers.Web3Provider(connection);
             const signer = provider.getSigner();
             const contract = fetchContract(signer);
+            console.log(accounts[0],receiver,index)
             const shipment = await contract.startShipment(
                 accounts[0],
                 receiver,
-                index * 1
+                index
             );
 
             shipment.wait();
+            window.location.reload();
             console.log(shipment);
         } catch (error) {
             console.log("Sorry no Shipment", error);

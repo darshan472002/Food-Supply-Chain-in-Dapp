@@ -24,7 +24,7 @@ export default () => {
       <div className="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8">
         <div className="justify-between sm:flex">
           <div className="space-y-6">
-            <img src="https://www.floatui.com/logo.svg" className="w-32" />
+            <img src="https://www.shutterstock.com/image-illustration/supply-chain-concept-image-text-260nw-1776514838.jpg" className="w-32" />
             <p className="max-w-md">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus unde ratione quod, totam consectetur nisi!
             </p>
