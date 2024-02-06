@@ -46,17 +46,17 @@ export default ({
             </button>
           </div>
           <div className="max-w-sm mx-auto py-3 space-y-3 text-center">
-            <h4 className="text-lg font-medium text-gray-800">
+            <h4 className="text-lg font-medium text-gray-1000">
               Track product, Create Shipment
             </h4>
             <p className="text-[15px] text-gray-600">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae praesentium quas voluptate perspiciatis perferendis sequi accusamus omnis incidunt officia.
             </p>
             <form onSubmit={(e) => e.preventDefault()}>
-              <div className="relative mt-3">
+              <div className="relative mt-5">
                 <input
                   type="text"
-                  placeholder="receiver"
+                  placeholder="Receiver"
                   className="w-full pl-5 pr-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                   onChange={(e) =>
                     setShipment({
@@ -69,7 +69,7 @@ export default ({
               <div className="relative mt-3">
                 <input
                   type="date"
-                  placeholder="pickupTime"
+                  placeholder="PickupTime"
                   className="w-full pl-5 pr-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                   onChange={(e) =>
                     setShipment({
@@ -82,7 +82,7 @@ export default ({
               <div className="relative mt-3">
                 <input
                   type="text"
-                  placeholder="distance"
+                  placeholder="Distance"
                   className="w-full pl-5 pr-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                   onChange={(e) =>
                     setShipment({
@@ -95,7 +95,7 @@ export default ({
               <div className="relative mt-3">
                 <input
                   type="text"
-                  placeholder="price"
+                  placeholder="Price"
                   className="w-full pl-5 pr-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                   onChange={(e) =>
                     setShipment({

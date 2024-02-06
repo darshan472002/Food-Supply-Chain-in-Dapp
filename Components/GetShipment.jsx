@@ -35,19 +35,19 @@ export default ({ getModel, setGetModel, getShipment }) => {
                     <div className="relative w-full max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">
                     <div className="flex justify-end">
                         <button 
-                            className="p-2 text-gray-400 rounded-md hover: bg-gray-100"
+                            className="p-2 text-gray-400 rounded-md hover:bg-gray-100"
                             onClick={() => setGetModel(false) }
                         >
                           <Str1 />                      
                         </button>
                     </div>
                     <div className="max-w-sm mx-auto py-3 space-y-3 text-center">
-                            <h4 className="text-lg font-medium text-gray-800">
+                            <h4 className="text-lg font-medium text-gray-1000">
                                 Product Tracking Details
                             </h4>
 
                             <form onSubmit={(e) => e.preventDefault()}>
-                                <div className="relative mt-3">
+                                <div className="relative mt-5">
                                     <input
                                         type="number"
                                         placeholder="Id"
