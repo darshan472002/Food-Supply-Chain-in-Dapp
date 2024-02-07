@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { ethers } from "ethers";
 import Image from "next/image";
 
 // INTERNAL IMPORT
@@ -53,21 +54,24 @@ export default ({
     }, []);
 
     // Function to fetch the account balance
-const fetchAccountBalance = async () => {
-    if (window.ethereum) {
+    const fetchAccountBalance = async () => {
         try {
-            const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-            const provider = new window.ethereum;
-            const balance = await provider.getBalance(accounts[0]);
-            const balanceInEther = window.web3.utils.fromWei(balance, 'ether');
-            setAccountBalance(balanceInEther);
+            if (window.ethereum) {
+                const provider = new ethers.providers.Web3Provider(window.ethereum);
+                const accounts = await provider.send("eth_requestAccounts", []);
+                const balanceInWei = await provider.getBalance(accounts[0]);
+                const balanceInEth = ethers.utils.formatEther(balanceInWei);
+                const formattedBalance = parseFloat(balanceInEth).toFixed(2) + " ETH";
+                setAccountBalance(formattedBalance);
+                console.log("Account Balance:", formattedBalance);
+            } else {
+                console.error("MetaMask not detected or not connected");
+            }
         } catch (error) {
             console.error("Error fetching account balance:", error);
         }
-    } else {
-        console.error("MetaMask not detected or not connected");
-    }
-};
+    };
+    
 
 
     return openProfile ? (
@@ -101,7 +105,7 @@ const fetchAccountBalance = async () => {
 
                             <div className="flex mt-4 space-x-3 md:mt-5">
                                 <a className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-black rounded-lg border-2">
-                                    Balance: {accountBalance} ETH
+                                    Balance: {accountBalance}
                                 </a>
                                 <a className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-black rounded-lg border-2">
                                     Total Shipment: {count}
