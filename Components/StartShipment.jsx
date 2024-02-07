@@ -49,7 +49,7 @@ export default ({ startModal, setStartModal, startShipment }) => {
 
                             <div className="relative mt-3">
                                 <input
-                                    type="text"
+                                    type="number"
                                     placeholder="Id"
                                     className="w-full pl-5 pr-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-m rounded-lg"
                                     onChange={(e) =>
