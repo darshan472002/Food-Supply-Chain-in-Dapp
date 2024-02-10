@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Web3Modal from "web3modal";
 import { ethers } from "ethers";
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 // INTERNAL IMPORT
 import tracking from "@/Conetxt/Tracking.json";
@@ -122,7 +123,6 @@ export const TrackingProvider = ({ children }) => {
     };
 
     const getShipment = async (index) => {
-        console.log(index * 1);
         try {
             if (!window.ethereum) return "Install MetaMask";
 
@@ -184,43 +184,26 @@ export const TrackingProvider = ({ children }) => {
         }
     };
 
-    // ---CHECK WALLET CONNECTED
-    const checkIfWalletConnected = async () => {
-        try {
-            if (!window.ethereum) return "Install MetaMask";
-
-            const accounts = await window.ethereum.request({
-                method: "eth_accounts",
-            });
-
-            if (accounts.length) {
-                setCurrentUser(accounts[0]);
-            } else {
-                return "No account";
+// ---CONNECT WALLET FUNCTION
+const connectWallet = async () => {
+    try {
+        if (!window.ethereum) {
+            const result = window.confirm("MetaMask is not installed. Do you want to download it?");
+            if (result) {
+                window.open("https://metamask.io/download.html", "_blank");
             }
-        } catch (error) {
-            return "not connected";
+        } else {
+            window.alert("MetaMask is installed")
         }
-    };
-
-    // ---CONNECT WALLET FUNCTION
-    const connectWallet = async () => {
-        try {
-            if (!window.ethereum) return "Install MetaMask";
-
-            const accounts = await window.ethereum.request({
-                method: "eth_requestAccounts",
-            });
-
-            setCurrentUser(accounts[0]);
-        } catch (error) {
-            return "Something want Wrong";
-        }
-    };
-
-    useEffect(() => {
-        checkIfWalletConnected();
-    }, []);
+        await window.ethereum.request({ method: "eth_requestAccounts" });
+        const accounts = await window.ethereum.request({
+            method: "eth_accounts",
+        });
+        setCurrentUser(accounts[0]);
+    } catch (error) {
+        window.alert("Error connecting MetaMask: " + error.message);
+    }
+};
 
     return (
         <TrackingContext.Provider
