@@ -52,7 +52,7 @@ const YourComponent = ({ setCreateShipmentModel, allShipmentsdata }) => {
                 <table className="w-full table-auto text-sm text-left">
                     <thead className="bg-gray-50 text-gray-600 font-medium border-b">
                         <tr>
-                            <th className="py-3 px-6">Id</th>
+                            {/* <th className="py-3 px-6">Id</th> */}
                             <th className="py-3 px-6">Sender</th>
                             <th className="py-3 px-6">Receiver</th>
                             <th className="py-3 px-6">PickupTime</th>
@@ -66,7 +66,7 @@ const YourComponent = ({ setCreateShipmentModel, allShipmentsdata }) => {
                     <tbody className="text-gray-600 divide-y">
                         {allShipmentsdata?.map((shipment, idx) => (
                             <tr key={idx}>
-                                <td className="px-6 py-4 whitespace-nowrap">{idx}</td>
+                                {/* <td className="px-6 py-4 whitespace-nowrap">{idx}</td> */}
                                 <td className="px-6 py-4 whitespace-nowrap relative">
                                     <span className="group" onMouseEnter={() => setCopiedId(null)}>
                                         {shipment.sender.slice(0, 15)}......
