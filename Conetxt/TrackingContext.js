@@ -184,26 +184,45 @@ export const TrackingProvider = ({ children }) => {
         }
     };
 
-// ---CONNECT WALLET FUNCTION
-const connectWallet = async () => {
-    try {
-        if (!window.ethereum) {
-            const result = window.confirm("MetaMask is not installed. Do you want to download it?");
-            if (result) {
-                window.open("https://metamask.io/download.html", "_blank");
+        // ---CHECK WALLET CONNECTED
+        const checkIfWalletConnected = async () => {
+            try {
+                if (!window.ethereum) {
+                    const result = window.confirm("MetaMask is not installed. Do you want to download it?");
+                    if (result) {
+                        window.open("https://metamask.io/download.html", "_blank");
+                    }
+                }    
+                const accounts = await window.ethereum.request({
+                    method: "eth_accounts",
+                });
+    
+                if (accounts.length) {
+                    setCurrentUser(accounts[0]);
+                } else {
+                    return "No account";
+                }
+            } catch (error) {
+                return "not connected";
             }
-        } else {
-            window.alert("MetaMask is installed")
-        }
-        await window.ethereum.request({ method: "eth_requestAccounts" });
-        const accounts = await window.ethereum.request({
-            method: "eth_accounts",
-        });
-        setCurrentUser(accounts[0]);
-    } catch (error) {
-        window.alert("Error connecting MetaMask: " + error.message);
-    }
-};
+        };
+    
+        // ---CONNECT WALLET FUNCTION
+        const connectWallet = async () => {
+            try {
+                // if (!window.ethereum) return "Install MetaMask";    
+                const accounts = await window.ethereum.request({
+                    method: "eth_requestAccounts",
+                });    
+                setCurrentUser(accounts[0]);
+            } catch (error) {
+                window.alert("Error connecting MetaMask: " + error.message);
+            }
+        };
+    
+        useEffect(() => {
+            checkIfWalletConnected();
+        }, []);
 
     return (
         <TrackingContext.Provider
