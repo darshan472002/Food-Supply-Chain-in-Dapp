@@ -24,7 +24,7 @@ export default ({
             avatar: images.shipCount,
         },
         {
-            avatar: images.send,
+            avatar: images.addTracking,
         },
     ];
 
