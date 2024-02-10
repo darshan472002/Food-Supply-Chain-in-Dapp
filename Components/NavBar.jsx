@@ -33,8 +33,6 @@ const Navigation = () => {
   };
 
   const handleScroll = () => {
-    console.log("Scrolling...");
-    console.log("Page Offset:", window.pageYOffset);
     if (window.pageYOffset > 0) {
       setState(true);
     } else {
@@ -49,7 +47,7 @@ const Navigation = () => {
       }`}
     >
       <div className="gap-x-14 items-center max-w-screen-xl mx-auto px-4 md:flex md:px-8">
-        <div className="flex items-center justify-between py-5 md:block">
+        <div className="flex items-center justify-between py-3 md:block">
           <a href="http://localhost:3000/">
             <img
               src="https://www.shutterstock.com/image-illustration/supply-chain-concept-image-text-260nw-1776514838.jpg"
@@ -68,11 +66,11 @@ const Navigation = () => {
           </div>
         </div>
         <div
-          className={`flex-1 items-center mt-8 md:mt-0 md:flex ${
+          className={`flex-1 items-center mt-9 md:mt-0 md:flex ${
             state ? "block" : "hidden"
           }`}
         >
-          <ul className="justify-center items-center space-y-6 md:flex md:space-x-6 md:space-y-0">
+          <ul className="justify-center items-center mt-3 space-y-6 md:flex md:space-x-6 md:space-y-0">
             {navigation.map((item, idx) => (
               <li key={idx} className="text-gray-700 hover:text-gray-900">
                 <a href={item.path} className="block">
@@ -83,7 +81,7 @@ const Navigation = () => {
           </ul>
           <div className="flex-1 gap-x-6 items-center justify-end mt-6 space-y-6 md:flex md:space-y-0 md:mt-0 ">
             {currentUser ? (
-              <p className="flex items-center justify-center gap-x-1 py-2 px-4 text-white font-medium bg-gray-800 hover:bg-gray-700 active:bg-gray-900 rounded-full md:inline-flex">
+              <p className="flex items-center justify-center mt-3 gap-x-1 py-2 px-4 text-white font-medium bg-gray-800 hover:bg-gray-700 active:bg-gray-900 rounded-full md:inline-flex">
                 {currentUser.slice(0, 25)}..
               </p>
             ) : (
